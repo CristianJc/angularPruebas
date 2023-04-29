@@ -1,0 +1,12 @@
+<h1>¡Hola, {{name}}!</h1>
+<h3  [ngClass]="name == 'Anonimo' ? 'anonimo':'saludo' " [innerText]="name"></h3>
+
+<h5 [ngStyle]="{color: 'orange'}">
+  Hola. que tal?
+</h5>
+<h5 [ngStyle]="myStyle">
+  Adios. Adios
+</h5>
+<button id="emit-alert"(click)="enviarMsjPadre()" > Alert</button>
+
+<app-basic-list></app-basic-list>

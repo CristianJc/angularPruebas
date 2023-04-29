@@ -1,0 +1,61 @@
+<!-- bloque de directiva de atributos -->
+
+<p [ngStyle]="{ color: 'tomato', fontWeight: 'bolder' }">basic-list works!</p>
+<p ngClass="underlined">Aqui vamos a iterar</p>
+<p [ngClass]="['underlined', 'small']">Aun no tienes elementos en la lista</p>
+<p [ngClass]="{ undefined: false, small: true }">
+  Te recomendamos crear un elemento
+</p>
+
+<!-- bloque de directivas estructurales -->
+
+<button (click)="cambiarCargando()">
+  {{ cargando ? "terminar carga" : "iniciar carga" }}
+</button>
+
+<ng-container *ngIf="!cargando; else elseTemplate">
+  <p>Todo listo</p>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <p>cargando...</p>
+  <p>Espere a que termine el proceso</p>
+</ng-template>
+
+<!-- bloque de explicar el uso de NGFOR -->
+<div  [ngStyle]="even?{ backgroundColor: 'blue', color: 'white'}:{ backgroundColor: 'green', color: 'white' }" *ngFor="let item of listaElementos; let i= index; let even= even ">
+  <div *ngIf="cargando==false">
+    <p>ID: {{i+1}} </p>
+    <p>{{ item.nombre }} - $ {{ item.precio }}</p>
+    <p>{{ item.description }}</p>
+  </div>
+</div>
+
+<!-- bloque para entender ngSwitch -->
+
+<div [ngSwitch]="option" >
+
+  <p [id]="1"  *ngSwitchCase="1">option 1</p>
+  <p [id]="2"  *ngSwitchCase="2">option 2</p>
+  <p [id]="3"  *ngSwitchCase="3">option 3</p>
+  <p [id]="4"  *ngSwitchCase="4">option 4</p>
+  <p *ngSwitchDefault="" class="cerrar">Ninguna de las opciones</p>
+
+
+
+</div>
+<div>
+  <input type="radio" name="option"(click)="escogerOpcion(1)" > op 1
+  <input type="radio" name="option"(click)="escogerOpcion(2)" >op 2
+  <input type="radio" name="option"(click)="escogerOpcion(3)" >op 3
+  <input type="radio" name="option"(click)="escogerOpcion(4)" >op 3
+  <input type="radio" selected="selected" name="option"(click)="escogerOpcion(0)" >Oculta
+
+</div>
+<div *ngFor="let item of listaElementos; let i= index; let even= even ">
+  <div *ngIf="cargando==false"  [ngStyle]="even?{ backgroundColor: 'blue', color: 'white'}:{ backgroundColor: 'green', color: 'white' }" >
+    <p>ID: {{i+1}} </p>
+    <p>{{ item.nombre }} - $ {{ item.precio }}</p>
+    <p>{{ item.description }}</p>
+  </div>
+</div>
